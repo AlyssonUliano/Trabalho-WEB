@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabalho Computed</title>
+</head>
+<body>
+<div id="app" class="col-md-12">
+ Quantidade: <input type="number"  @keyup="valorTotal" v-model="qtd" >
+ <br><br>
+ Valor produto: <input type="number" @keyup="valorTotal" v-model="valor" >
+ <br><br>
+ Valor total: <input type="number" @keyup="valorTotal" :value="total">
+
+<br><br>
+Desconto %: <input type="number" @keyup="valorDesconto" v-model="porc">
+
+<br><br>
+Valor desconto: <input type="number" @keyup="valorDesconto" v-model="desconto">
+
+<br><br>
+Valor Final: <input type="number" @keyup="valorLiquido" v-model="liquido">
+
+</div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+            new Vue({
+                el:'#app',
+                data:{
+                    total:'',
+                    valor:'',
+                    qtd:'',
+                    porc:'',
+                    desconto:'',
+                    liquido:''
+                
+                },
+                computed:{
+                    valorTotal: function(){
+                       return this.total = this.qtd*this.valor
+                    },
+                    valorDesconto: function(){
+                        return this.desconto = this.total*(this.porc/100)
+                    },
+                    valorLiquido: function(){
+                        return this.liquido = this.total - this.desconto
+
+                    }
+
+
+               
+                    }
+                
+            })
+    </script>
+    
+</body>
+</html>
